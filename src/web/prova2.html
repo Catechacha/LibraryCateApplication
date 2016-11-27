@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><!--importo bootstrap e angular-->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="demoApp">
+<div ng-controller="booksCtrl" class="container">
+    <h2>Your books</h2>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Author</th>
+        </tr>
+        <tr ng-repeat="book in books">
+            <td>{{ book.title }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.year }}</td>
+            <td>
+                {{ book.author.firstName }}
+                {{ book.author.lastName }}
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    var app = angular.module('demoApp', []);
+    app.controller('booksCtrl', function($scope, $http) {
+        $http.get("books")
+                .then(function(response) {
+                    $scope.books = response.data;
+                });
+    });
+</script>
+</body>
+</html>

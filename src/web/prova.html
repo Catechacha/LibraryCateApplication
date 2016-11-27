@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"><!--importo bootstrap e angular-->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<body ng-app="myApp">
+<!-- elemento root dell'applicazione con angular Js -->
+
+<div ng-controller="demoApp" class="container"> <!--aggiunge un controllo all'applicazione-->
+    <form>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" class="form-control" ng-model="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" class="form-control" ng-model="lastName">
+        </div>
+    </form>
+    <div class="panel panel-default">
+        <div class="panel-heading">Full Name</div>
+        <div class="panel-body">
+            {{firstName + " " + lastName}}
+        </div>
+    </div>
+</div>
+<script>
+    var app = angular.module('demoApp', []);//specifico il controller con cui interagirà lo script?!
+    app.controller('myCtrl',['$scope', function($scope) {
+        $scope.firstName= "John";
+        $scope.lastName= "Doe";
+    }]);
+</script>
+</body>
+</html>
